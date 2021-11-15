@@ -1,16 +1,18 @@
 
 
-# numbers = input()
-numbers = '000100010'
-t = range(3, 7)
-print(list(t))
-zero_cnt = numbers.count('0')
-one_cnt = len(numbers) - zero_cnt
-less_num = 1 if zero_cnt > one_cnt else 0
+numbers = input()
+# numbers = '0001100'
+arr_numbers = list(map(int, numbers))
 
-
-print(numbers.find(str(less_num)))
-print(numbers.rfind(str(less_num)))
-
-# for i in range(3, 7)
-# numbers[i] = 1 if numbers[i] == 0 else 0
+count = 0
+tot = 0
+while sum(arr_numbers) != 0 and sum(arr_numbers) != len(arr_numbers):
+    less_num = 1 if arr_numbers.count(1) < arr_numbers.count(0) else 0
+    str_numbers = ''.join(map(str, arr_numbers))
+    start = str_numbers.index(str(less_num))
+    end = str_numbers.rindex(str(less_num)) + 1
+    for i in range(start, end):
+            arr_numbers[i] = 1 if arr_numbers[i] == 0 else 0
+    count += 1
+    tot = sum(arr_numbers)
+print(count)
